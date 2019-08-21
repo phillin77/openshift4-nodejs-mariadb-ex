@@ -117,11 +117,11 @@ app.get('/', function (req, res) {
 
 // Check if MySQL is running!
 app.get('/mysql', function(req, res) {
-  mysqlClient.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+  mysqlClient.query('SELECT 1 + 1 AS solution, NOW() AS now', function(err, rows, fields) {
     if (err) {
       res.send('NOT OK' + JSON.stringify(err));
     } else {
-      res.send('OK: ' + rows[0].solution);
+      res.send(`OK: ${rows[0].solution} at ${rows[0].now}`);
     }
   });
 });
